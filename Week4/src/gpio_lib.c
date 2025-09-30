@@ -1,0 +1,1 @@
+void pinSet(uint16_t port, uint16_t bit, bool val);
