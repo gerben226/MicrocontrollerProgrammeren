@@ -5,10 +5,10 @@
 
 void pinSet(uint16_t port, uint16_t bit, bool val){
     if (val){
-        *(&P1OUT + (port - 1)) |= bit;
+        *(&P1OUT + port) |= bit;
     }
     else {
-        *(&P1OUT + (port - 1)) &= ~bit;
+        *(&P1OUT + port) &= ~bit;
     }
 }
 

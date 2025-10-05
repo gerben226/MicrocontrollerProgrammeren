@@ -5,6 +5,11 @@
 #ifndef INCLUDE_GPIO_LIB_H_
 #define INCLUDE_GPIO_LIB_H_
 
+#define PORT1 0x0000
+#define PORT2 0x0001
+#define PORT3 0x0020
+#define PORT4 0x0021
+
 typedef enum {
     Digital,
     Primary,
