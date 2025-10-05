@@ -13,7 +13,7 @@ void pinSet(uint16_t port, uint16_t bit, bool val){
 }
 
 void pinToggle(uint16_t port, uint16_t bit){
-
+    *(&P1OUT +(port - 1)) ^= bit;
 }
 
 void pinGet(uint16_t port, uint16_t bit){

@@ -6,13 +6,12 @@ int main(void)
 WDTCTL = WDTPW | WDTHOLD;  	 //stop WDT
 PM5CTL0 &= ~LOCKLPM5;		//disable the GPIO power-on default HI-mode
 
-pinSet(1, BIT0, true);
+pinSet(4, BIT6, false);
 
-pinSet(1, BIT0, false);
-
+pinToggle(1, BIT0);
 
 while(1)
 {
-    
+    pinToggle(1, BIT0);
 }
 }
