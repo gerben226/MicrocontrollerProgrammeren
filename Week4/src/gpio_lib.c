@@ -17,7 +17,7 @@ void pinToggle(uint16_t port, uint16_t bit){
 }
 
 bool pinGet(uint16_t port, uint16_t bit){
-    return *(&P1IN + port) & bit;
+    return (*(&P1IN + port) & bit) != 0;
 }
 
 void pinConfigInput(uint16_t port, uint16_t bit, bool pullResistor, bool pullUP, bool IES, bool IE){
@@ -46,9 +46,14 @@ void pinConfigInput(uint16_t port, uint16_t bit, bool pullResistor, bool pullUP,
 }
 
 void pinSetDir(uint16_t port, uint16_t bit, uint16_t val){
-
+    if (val){
+        *(&P1DIR + port) |= bit;
+    }
+    else {
+        *(&P1OUT + port) &= ~bit;
+    }
 }
 
 void pinConfigFunction(uint16_t port, uint16_t bit, purposeFunction pf){
-
+    
 }
