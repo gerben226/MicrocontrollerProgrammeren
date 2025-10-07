@@ -37,14 +37,15 @@ void pinConfigInput(uint16_t port, uint16_t bit, bool pullResistor, bool pullUP,
     }
     if(IE){
         *(&P1IE + port) |= bit;
+        *(&P1IFG + port) &= ~bit;
     }
-    else if(!IE){
+    else {
         *(&P1IE + port) &= ~bit;
     }
     if(IES){
         *(&P1IES + port) |= bit;
     }
-    else if(!IES){
+    else {
         *(&P1IES + port) &= ~bit;
     }
 }
