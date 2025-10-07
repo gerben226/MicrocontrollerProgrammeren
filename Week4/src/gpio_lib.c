@@ -13,15 +13,36 @@ void pinSet(uint16_t port, uint16_t bit, bool val){
 }
 
 void pinToggle(uint16_t port, uint16_t bit){
-    *(&P1OUT +(port - 1)) ^= bit;
+    *(&P1OUT +(port)) ^= bit;
 }
 
-void pinGet(uint16_t port, uint16_t bit){
-
+bool pinGet(uint16_t port, uint16_t bit){
+    return *(&P1IN + port) & bit;
 }
 
 void pinConfigInput(uint16_t port, uint16_t bit, bool pullResistor, bool pullUP, bool IES, bool IE){
-
+    *(&P1DIR + port) &= ~bit;
+    if(pullResistor){
+        *(&P1REN + port) |= bit;
+        if(pullUP){
+            *(&P1OUT + port) |= bit;
+        }
+        else {
+            *(&P1OUT + port) &= ~bit;
+        }
+    }
+    if(IE){
+        *(&P1IE + port) |= bit;
+    }
+    else if(!IE){
+        *(&P1IE + port) &= ~bit;
+    }
+    if(IES){
+        *(&P1IES + port) |= bit;
+    }
+    else if(!IES){
+        *(&P1IES + port) &= ~bit;
+    }
 }
 
 void pinSetDir(uint16_t port, uint16_t bit, uint16_t val){

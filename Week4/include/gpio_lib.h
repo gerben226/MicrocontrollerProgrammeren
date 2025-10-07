@@ -21,7 +21,7 @@ void pinSet(uint16_t port, uint16_t bit, bool val);
 
 void pinToggle(uint16_t port, uint16_t bit);
 
-void pinGet(uint16_t port, uint16_t bit);
+bool pinGet(uint16_t port, uint16_t bit);
 
 void pinConfigInput(uint16_t port, uint16_t bit, bool pullResistor, bool pullUP, bool IES, bool IE);
 
